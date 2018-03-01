@@ -1,5 +1,31 @@
-var template = '<h1>HELLO WORLD</h1>';
+const TODO = [
+	{
+		title: 'Take out the bins',
+		description: 'Both general waste and recycling'
+	},
+	{
+		title: 'Buy groceries',
+		description: 'Milk, bread and eggs'
+	},
+	{
+		title: 'Do the laundry',
+		description: 'Only whites'
+	}
+];
 
-var myFunction = component(template, document.getElementById('app'));
+function test() {
+	var string = '';
+	for (i = 0; i < TODO.length; i++) {
+		string += task({
+			title: TODO[i].title,
+			description: TODO[i].description
+		});
+	}
+	return string;
+}
 
-window.onload = myFunction;
+function load() {
+	list(test());
+}
+
+window.onload = load;
