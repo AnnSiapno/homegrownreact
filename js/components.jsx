@@ -1,28 +1,12 @@
-function list(children) {
-	component(
-		{
-			render: `<ul id'list'>${children}</ul>`
-		},
-		document.getElementById('app')
-	);
-}
+const List = children => {
+	return MyReact.component('ul', null, children);
+};
 
-function task(props) {
-	var expand = false;
-	var description = `
-    <ul>
-      <li>${props.description}</li>
-    </ul>
-  `;
-	this.click = function() {
-		description = !description
-    console.log(description)
-		return false;
-	};
-	return component({
-		render: `<li><a href="#" onClick="(function(){
-    this.click()
-    return false;
-})();return false;">${props.title}</a></li>`
-	});
-}
+const ListItem = (title, props) => {
+	return MyReact.component('li', props, [title]);
+};
+
+const TodoDescription = desc => {
+	var li = ListItem(desc, null);
+	return List([li]);
+};
