@@ -1,19 +1,36 @@
-const List = children => {
-	return MyReact.createElement('ul', null, children);
-};
-
-const ListItem = (title, props) => {
-	return MyReact.createElement('li', props, [title]);
-};
-
-const TodoDescription = (desc, props) => {
-	var li = ListItem(desc, props);
-	return List([li]);
-};
-
-class ToDoItemNew {
+class List extends MyReact.component {
 	constructor(props) {
-		this.props = props;
+		super(props);
+	}
+
+	render() {
+		return MyReact.create('ul', null, this.props.children);
+	}
+}
+
+class ListItem extends MyReact.component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return MyReact.create('li', this.props.props, [this.props.title]);
+	}
+}
+
+class TodoDescription extends MyReact.component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return MyReact.create('span', this.props.props, [this.props.desc]);
+	}
+}
+
+class ToDoItem extends MyReact.component {
+	constructor(props) {
+		super(props);
 	}
 
 	onClick() {
@@ -26,9 +43,15 @@ class ToDoItemNew {
 	}
 
 	render() {
-		var li = ListItem(this.props.title, null);
-		var info = TodoDescription(this.props.desc, this.props.descProps);
-		return MyReact.createElement(
+		var li = MyReact.newInstance(ListItem, {
+			title: this.props.title,
+			props: null
+		});
+		var info = MyReact.newInstance(TodoDescription, {
+			desc: this.props.desc,
+			props: this.props.descProps
+		});
+		return MyReact.create(
 			'div',
 			{
 				onClick: this.onClick.bind(this)

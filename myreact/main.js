@@ -2,7 +2,7 @@ var render = (el, node) => {
 	node.appendChild(el);
 };
 
-var createElement = (el, props, children) => {
+var create = (el, props, children) => {
 	// for when the el is a class
 	// console.log(el);
 	if (typeof el === 'function') {
@@ -27,6 +27,7 @@ var createElement = (el, props, children) => {
 					func();
 				});
 			} else {
+				console.log(k, props[k]);
 				newEl.setAttribute(k, props[k]);
 			}
 		}
@@ -34,13 +35,20 @@ var createElement = (el, props, children) => {
 	return newEl;
 };
 
-var create = (cls, props) => {
+var newInstance = (cls, props) => {
 	const component = new cls(props);
 	return component.render();
 };
 
+class Component {
+	constructor(props) {
+		this.props = props;
+	}
+}
+
 var MyReact = {
 	render: render,
-	createElement: createElement,
-	create: create
+	create: create,
+	newInstance: newInstance,
+	component: Component
 };
