@@ -3,11 +3,6 @@ var render = (el, node) => {
 };
 
 var create = (el, props, children) => {
-	// for when the el is a class
-	// console.log(el);
-	if (typeof el === 'function') {
-		return el();
-	}
 	var newEl = document.createElement(el);
 	children.forEach(child => {
 		// when children contains components
@@ -27,7 +22,6 @@ var create = (el, props, children) => {
 					func();
 				});
 			} else {
-				console.log(k, props[k]);
 				newEl.setAttribute(k, props[k]);
 			}
 		}

@@ -14,7 +14,7 @@ class ListItem extends MyReact.component {
 	}
 
 	render() {
-		return MyReact.create('li', this.props.props, [this.props.title]);
+		return MyReact.create('li', this.props.props, this.props.title);
 	}
 }
 
@@ -24,7 +24,7 @@ class TodoDescription extends MyReact.component {
 	}
 
 	render() {
-		return MyReact.create('span', this.props.props, [this.props.desc]);
+		return MyReact.create('span', this.props.props, this.props.desc);
 	}
 }
 
@@ -44,11 +44,11 @@ class ToDoItem extends MyReact.component {
 
 	render() {
 		var li = MyReact.newInstance(ListItem, {
-			title: this.props.title,
+			title: [this.props.title],
 			props: null
 		});
 		var info = MyReact.newInstance(TodoDescription, {
-			desc: this.props.desc,
+			desc: [this.props.desc],
 			props: this.props.descProps
 		});
 		return MyReact.create(
