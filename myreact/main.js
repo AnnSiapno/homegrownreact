@@ -2,7 +2,12 @@ var render = (el, node) => {
 	node.appendChild(el);
 };
 
-var component = (el, props, children) => {
+var createElement = (el, props, children) => {
+	// for when the el is a class
+	// console.log(el);
+	if (typeof el === 'function') {
+		return el();
+	}
 	var newEl = document.createElement(el);
 	children.forEach(child => {
 		// when children contains components
@@ -29,7 +34,13 @@ var component = (el, props, children) => {
 	return newEl;
 };
 
+var create = (cls, props) => {
+	const component = new cls(props);
+	return component.render();
+};
+
 var MyReact = {
 	render: render,
-	component: component
+	createElement: createElement,
+	create: create
 };

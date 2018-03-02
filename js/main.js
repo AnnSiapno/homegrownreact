@@ -13,21 +13,14 @@ const TODO = [
 	}
 ];
 
-function click() {
-	console.log('helllllo');
-}
-
 var getList = () => {
 	var items = [];
 	for (i = 0; i < TODO.length; i++) {
-		items.push(
-			ListItem(TODO[i].title, {
-				onClick: function() {
-					click();
-				}
-			})
-		);
-		items.push(TodoDescription(TODO[i].description));
+		var item = MyReact.create(ToDoItemNew, {
+			title: TODO[i].title,
+			desc: TODO[i].description
+		});
+		items.push(item);
 	}
 	return items;
 };
@@ -35,6 +28,14 @@ var getList = () => {
 function load() {
 	var app = List(getList());
 	MyReact.render(app, document.getElementById('app'));
+}
+
+function test() {
+	var test = MyReact.create(ToDoItemNew, {
+		title: 'TITLE',
+		desc: 'DESCRIPTION'
+	});
+	MyReact.render(test, document.getElementById('app'));
 }
 
 window.onload = load;
