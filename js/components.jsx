@@ -6,25 +6,9 @@ const ListItem = (title, props) => {
 	return MyReact.createElement('li', props, [title]);
 };
 
-const TodoDescription = desc => {
-	var li = ListItem(desc, null);
+const TodoDescription = (desc, props) => {
+	var li = ListItem(desc, props);
 	return List([li]);
-};
-
-const TodoItem = (title, desc) => {
-	var hide = true;
-	onClick = () => {
-		hide = !hide;
-		console.log(hide);
-	};
-	var li = ListItem(title, null);
-	var info = TodoDescription(desc);
-	var props = {
-		onClick: function() {
-			this.onClick();
-		}
-	};
-	return MyReact.createElement('div', props, [li, info]);
 };
 
 class ToDoItemNew {
@@ -32,9 +16,24 @@ class ToDoItemNew {
 		this.props = props;
 	}
 
+	onClick() {
+		var el = document.getElementById(this.props.descProps.id);
+		if (el.style.display === 'none') {
+			el.setAttribute('style', 'display: block');
+		} else {
+			el.setAttribute('style', 'display: none');
+		}
+	}
+
 	render() {
 		var li = ListItem(this.props.title, null);
-		var info = TodoDescription(this.props.desc);
-		return MyReact.createElement('div', null, [li, info]);
+		var info = TodoDescription(this.props.desc, this.props.descProps);
+		return MyReact.createElement(
+			'div',
+			{
+				onClick: this.onClick.bind(this)
+			},
+			[li, info]
+		);
 	}
 }

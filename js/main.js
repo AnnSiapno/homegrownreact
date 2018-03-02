@@ -18,24 +18,20 @@ var getList = () => {
 	for (i = 0; i < TODO.length; i++) {
 		var item = MyReact.create(ToDoItemNew, {
 			title: TODO[i].title,
-			desc: TODO[i].description
+			desc: TODO[i].description,
+			descProps: {
+				id: 'item' + i,
+				style: 'display: none'
+			}
 		});
 		items.push(item);
 	}
 	return items;
 };
 
-function load() {
+function loadContent() {
 	var app = List(getList());
 	MyReact.render(app, document.getElementById('app'));
 }
 
-function test() {
-	var test = MyReact.create(ToDoItemNew, {
-		title: 'TITLE',
-		desc: 'DESCRIPTION'
-	});
-	MyReact.render(test, document.getElementById('app'));
-}
-
-window.onload = load;
+window.onload = loadContent;
