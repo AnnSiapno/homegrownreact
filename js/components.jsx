@@ -34,7 +34,7 @@ class ToDoItem extends MyReact.component {
 	}
 
 	onClick() {
-		var el = document.getElementById(this.props.descProps.id);
+		let el = document.getElementById(this.props.descProps.id);
 		if (el.style.display === 'none') {
 			el.setAttribute('style', 'display: block');
 		} else {
@@ -43,11 +43,11 @@ class ToDoItem extends MyReact.component {
 	}
 
 	render() {
-		var li = MyReact.newInstance(ListItem, {
+		let li = MyReact.newInstance(ListItem, {
 			title: [this.props.title],
 			props: null
 		});
-		var info = MyReact.newInstance(TodoDescription, {
+		let info = MyReact.newInstance(TodoDescription, {
 			desc: [this.props.desc],
 			props: this.props.descProps
 		});

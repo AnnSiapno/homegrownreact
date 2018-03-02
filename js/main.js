@@ -13,10 +13,10 @@ const TODO = [
 	}
 ];
 
-var getList = () => {
-	var items = [];
+let getList = () => {
+	let items = [];
 	for (i = 0; i < TODO.length; i++) {
-		var item = MyReact.newInstance(ToDoItem, {
+		let item = MyReact.newInstance(ToDoItem, {
 			title: TODO[i].title,
 			desc: TODO[i].description,
 			descProps: {
@@ -30,7 +30,7 @@ var getList = () => {
 };
 
 function loadContent() {
-	var app = MyReact.newInstance(List, {
+	let app = MyReact.newInstance(List, {
 		children: getList()
 	});
 	MyReact.render(app, document.getElementById('app'));

@@ -1,9 +1,9 @@
-var render = (el, node) => {
+let render = (el, node) => {
 	node.appendChild(el);
 };
 
-var create = (el, props, children) => {
-	var newEl = document.createElement(el);
+let create = (el, props, children) => {
+	let newEl = document.createElement(el);
 	children.forEach(child => {
 		// when children contains components
 		if (typeof child === 'object') {
@@ -13,11 +13,11 @@ var create = (el, props, children) => {
 		}
 	});
 	if (props) {
-		for (var k in props) {
+		for (let k in props) {
 			// an event listener if it begins with 'on'
 			// the prop must be in camel case to detect the 'on'
 			if (/^on.*$/.test(k)) {
-				var func = props[k];
+				let func = props[k];
 				newEl.addEventListener(k.substring(2).toLowerCase(), function() {
 					func();
 				});
@@ -29,7 +29,7 @@ var create = (el, props, children) => {
 	return newEl;
 };
 
-var newInstance = (cls, props) => {
+let newInstance = (cls, props) => {
 	const component = new cls(props);
 	return component.render();
 };
@@ -42,7 +42,7 @@ class Component {
 	// TODO: add component functions here (e.g. setState)
 }
 
-var MyReact = {
+let MyReact = {
 	render: render,
 	create: create,
 	newInstance: newInstance,
