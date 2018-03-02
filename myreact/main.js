@@ -38,6 +38,8 @@ class Component {
 	constructor(props) {
 		this.props = props;
 	}
+
+	// TODO: add component functions here (e.g. setState)
 }
 
 var MyReact = {
